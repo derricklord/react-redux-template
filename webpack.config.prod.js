@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    
+
     './client/index'
   ],
   output: {
@@ -34,11 +34,24 @@ module.exports = {
       include: path.join(__dirname, 'client')
     },
     // CSS
-    { 
-      test: /\.styl$/, 
+    {
+      test: /\.styl$/,
       include: path.join(__dirname, 'client'),
       loader: 'style-loader!css-loader!stylus-loader'
-    }
+    },
+    {
+      test: /\.css$/,
+      include: path.join(__dirname, 'client'),
+      loader: 'style-loader!css-loader'
+    },
+    {
+      test: /\.ttf$|\.eot$|\.woff$|\.woff2$|\.svg$/,
+      loader: 'file',
+      query: {
+        name: 'font/[hash].[ext]'
+      },
+      include: path.join(__dirname, 'client/fonts')
+    }    
     ]
   }
 };
